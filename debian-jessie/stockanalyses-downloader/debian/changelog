@@ -1,0 +1,10 @@
+/tmp/git-tmp.ap6QC8 ~/deb-packaging/debian-jessie/stockanalyses-downloader
+
+stockanalyses-downloader (0.1.0) jessie; urgency=low
+  * add plugin for bitstamp exchange. improve stability.
+
+  * add a basic function of downloading data and preprocess the import.
+
+  * Initial commit
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de> Mon, 10 Apr 2017 22:35:32 +0200

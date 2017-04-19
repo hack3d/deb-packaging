@@ -4,19 +4,32 @@ set -e
 #DISTID
 #ARCH
 
-
+# get repo
 if [ $# -ne 1 ]; then
   echo "You must specify a repository like <sds-testing>."
   exit 1
 fi
 REPO=$1
 
+if [ $# -ne 2 ]; then
+	ARCH="$(dpkg --print-architecture)"
+	echo "We build now for native architecture ${ARCH)"
+else
+	ARCH="$2"
+	
+	# check if it's an architecture that we support
+	if [ "$ARCH" != 'i386' -a "$ARCH" != 'amd64' -a "$ARCH" != 'armhf' ]; then
+		echo "Unknown architecture"
+		exit 1
+	fi
+fi
+
 BASEDIR="$PWD"
 PKGNAME=$(basename "$BASEDIR")
 OSDISTRO=$(basename $(dirname "$BASEDIR"))
 OSDISTCODENAME=${OSDISTRO//*-}
 OSDISTID=${DISTID:-${OSDISTRO//-*}}
-: ${ARCH:="$(dpkg --print-architecture)"}
+
 
 BASEWRK="$HOME/debbuildir"
 if [ ! -d "$BASEWRK" ]; then
@@ -30,6 +43,10 @@ if [ "$OSDISTID" != 'ubuntu' -a "$OSDISTID" != 'debian' -a "$OSDISTID" != 'raspb
   echo "Unknown distribution"
   exit 1
 fi
+
+echo "DISTID: ${OSDISTID}"
+echo "DIST: ${OSDISTCODENAME}"
+echo "ARCH: ${ARCH}"
 
 if [ ! -f sources ]; then
   echo "No sources file available in this directory."
@@ -134,9 +151,6 @@ dpkg-buildpackage -S -us -uc -nc -d >/dev/null
 popd >/dev/null
 pkgdsc=$(ls *.dsc)
 echo "### Starting building package"
-sudo DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
+sudo DISTID="$OSDISTID" DIST="$OSDISTCODENAME" ARCH="$ARCH" pbuilder build ${WRK}/*.dsc
 echo "### Building done"
 popd >/dev/null
-echo
-echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
-dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
