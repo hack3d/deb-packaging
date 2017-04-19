@@ -1,6 +1,6 @@
-# OpenIO Debian and Ubuntu packaging
+# Stockanalyses Debian and Ubuntu packaging
 
-This repository gathers the deb packaging files used to build OpenIO softwares.
+This repository gathers the deb packaging files used to build Stockanalyses softwares.
 
 ## Setup
 
@@ -138,42 +138,42 @@ You can simply update the environment by using:
 ### Setup
 
 In your user home directory, clone this repository:  
-`# git clone git@github.com:open-io/deb-packaging.git`
+`# git clone git@github.com:hack3d/deb-packaging.git`
 
 Create the building directory that will be used to create the Debian source package:  
 `# mkdir ~/debbuildir`
 
 ### Rebuilding a package
 
-To rebuild the `openio-sds` package for Debian Jessie, change to the corresponding directory:  
-`# cd deb-packaging/debian-jessie/openio-sds`
+To rebuild the `stockanalyses-downloader` package for Debian Jessie, change to the corresponding directory:  
+`# cd deb-packaging/debian-jessie/stockanalyses-downloader`
 Then run the command:  
-`# ../../oio-debbuild.sh`
+`# ../../stockanalyses-debbuild.sh`
 This will download the source tarball in the `sources` file, create the Debian source package and run the pbuilder command that creates the packages.  
 The resulting packages are in the `/var/cache/pbuilder/jessie-amd64/result/` directory.  
 
 ### Updating a package
 
-To update the `openio-sds` package for Debian Jessie, change to the corresponding directory:  
-`# cd deb-packaging/debian-jessie/openio-sds`
+To update the `stockanalyses-downloader` package for Debian Jessie, change to the corresponding directory:  
+`# cd deb-packaging/debian-jessie/stockanalyses-downloader`
 Change the `sources` file to the correct source tarball. The first field is the URL to download the tarball and the second field is the name of the source tarball (should match the convention *pkgname_pkgversion.orig.tar.gz*).  
 Example of `sources` file:  
 
 ```
-https://github.com/open-io/oio-sds/archive/3.0.0.tar.gz openio-sds_3.0.0.orig.tar.gz
+https://github.com/hack3d/stockanalyses-downloader/archive/0.1.0.tar.gz stockanalyes-downloader_0.1.0.orig.tar.gz
 ```
 
 Then create a new changelog entry for the packages:  
-`# dch -b -v 3.0.0-1 --distribution jessie`
+`# dch -b -v 0.1.0-1 --distribution jessie`
 
-You are ready to run the `oio-debbuild.sh` that will download the source and build the package:  
-`# ../../oio-debbuild.sh`
+You are ready to run the `stockanalyses-debbuild.sh` that will download the source and build the package:  
+`# ../../stockanalyses-debbuild.sh`
 
 
 ### Adding the packages to a repository
 
 If dput and mini-dinstall are configured, you can put the packages in the repository using the command:  
-`# dput -u debian-openio-sds-testing /var/cache/pbuilder/jessie-amd64/result/openio-sds_*.changes`
+`# dput -u debian-stockanalyses-downloader-testing /var/cache/pbuilder/jessie-amd64/result/stockanalyses-downloader_*.changes`
 
 
 
