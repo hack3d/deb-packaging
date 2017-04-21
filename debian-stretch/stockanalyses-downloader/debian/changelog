@@ -1,5 +1,4 @@
-
-stockanalyses-downloader (0.1.0) jessie; urgency=low
+stockanalyses-downloader (0.1.0~deb9) stretch; urgency=low
   * add required packages to build deb-package
 
   * add plugin for bitstamp exchange. improve stability.

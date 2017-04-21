@@ -14,7 +14,7 @@ git clone https://github.com/hack3d/${PKGNAME}.git .
 git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 git tag -l | sort -u -r | while read TAG ; do
 	if [ $NEXT ];then
-		echo "${PKGNAME} (${NEXT#'v'}) ${DIST}; urgency=low"
+		echo "${PKGNAME} (${NEXT#'v'}~deb9) ${DIST}; urgency=low"
 	fi
 
 	GIT_PAGER=cat git log --no-merges --format="  * %s%n" $TAG..$NEXT
@@ -26,7 +26,7 @@ git tag -l | sort -u -r | while read TAG ; do
 done
 FIRST=$(git tag -l | head -1)
 echo
-echo "${PKGNAME} (${FIRST#'v'}) ${DIST}; urgency=low"
+echo "${PKGNAME} (${FIRST#'v'}~deb9) ${DIST}; urgency=low"
 GIT_PAGER=cat git log --no-merges --format="  * %s%n" $FIRST
 echo " -- Raphael Lekies <raphael.lekies@stockdashboard.de> $(git log -n1 --no-merges --format='%aD' $FIRST)"
 popd > /dev/null
