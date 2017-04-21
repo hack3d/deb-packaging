@@ -1,8 +1,10 @@
 #!/bin/bash
 # Author: Raphael Lekies
 
-PKGNAME=$1
-DIST=$2
+BASEDIR="$PWD"
+PKGNAME=$(basename "$BASEDIR")
+OSDISTRO=$(basename $(dirname "$BASEDIR"))
+DIST=${OSDISTRO//*-}
 
 tmpdir=$(mktemp -d /tmp/git-tmp.XXXXXX) > /dev/null || exit 1
 
