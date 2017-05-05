@@ -1,0 +1,4 @@
+create_user_stock-downloader.sql /opt/stockanalyses-database/
+create_user_stock-importer.sql /opt/stockanalyses-database/
+run.sh /opt/stockanalyses-database/
+stockanalyses_prod.sql /opt/stockanalyses-database/

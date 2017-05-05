@@ -1,0 +1,12 @@
+Source: stockanalyses-database
+Section: python
+Priority: optional
+Maintainer: Raphael Lekies <raphael.lekies@stockdashboard.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: stockanalyses-database
+Architecture: any
+Pre-Depends: dpkg (>= 1.16.1), mysql-client, ${misc:Pre-Depends}
+Depends: ${misc:Depends}
+Description: Create and update the database schema. 

@@ -1,0 +1,12 @@
+[Unit] 
+Description=Stockanalyses Importer
+After=multi-user.target
+
+[Service]
+Restart=always
+Type=idle 
+ExecStart=/opt/stockanalyses-importer/bin/python /opt/stockanalyses-importer/lib/python3.5/site-packages/importer/main.py
+
+[Install] 
+WantedBy=multi-user.target
+

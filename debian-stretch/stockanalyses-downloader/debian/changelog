@@ -1,3 +1,13 @@
+stockanalyses-downloader (0.1.2~deb9) stretch; urgency=low
+  * change path for storing logfiles
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de>  Thu, 4 May 2017 12:58:50 +0200
+
+stockanalyses-downloader (0.1.1~deb9) stretch; urgency=low
+  * change datastore to a absolute path
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de>  Tue, 25 Apr 2017 10:11:22 +0200
+
 stockanalyses-downloader (0.1.0~deb9) stretch; urgency=low
   * add required packages to build deb-package
 

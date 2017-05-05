@@ -1,0 +1,9 @@
+stockanalyses-data (1.0.0~deb9u1) stretch; urgency=low
+  * add correct path for datatstore
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de> Thu, 26 Apr 2017 09:06:59 +0200
+
+stockanalyses-data (1.0.0~deb9) stretch; urgency=low
+  * Initial commit
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de> Thu, 25 Apr 2017 09:06:59 +0200

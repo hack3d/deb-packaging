@@ -1,0 +1,12 @@
+Source: stockanalyses-data
+Section: misc
+Priority: optional
+Maintainer: Raphael Lekies <raphael.lekies@stockdashboard.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: stockanalyses-data
+Architecture: any
+Pre-Depends: dpkg (>= 1.16.1),${misc:Pre-Depends}
+Depends: ${misc:Depends}
+Description: Datastore 

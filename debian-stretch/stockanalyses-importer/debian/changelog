@@ -1,0 +1,9 @@
+
+stockanalyses-importer (0.1.0~deb9) stretch; urgency=low
+  * change the way how we get the information from the config file at the plugins.
+
+  * Change path for datastore
+
+  * init
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de> Thu, 4 May 2017 16:31:27 +0200

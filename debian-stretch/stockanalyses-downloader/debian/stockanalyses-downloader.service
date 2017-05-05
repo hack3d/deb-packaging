@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 Restart=always
 Type=idle 
-ExecStart=/opt/stockanalyses-downloader/stockanalyses-downloader/bin/python3 /opt/stockanalyses-downloader/stockanalyses-downloader/lib/python3/site-packages/downloader/main.py
+ExecStart=/opt/stockanalyses-downloader/bin/python /opt/stockanalyses-downloader/lib/python3.5/site-packages/downloader/main.py
 
 [Install] 
 WantedBy=multi-user.target

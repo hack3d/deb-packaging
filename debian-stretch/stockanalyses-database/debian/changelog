@@ -1,0 +1,16 @@
+
+stockanalyses-database (0.1.1~deb9) stretch; urgency=low
+  * bugfix
+
+  * configure stockanalyses-downloader and stockanalyses-importer database connection
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de>  Thu, 4 May 2017 22:26:12 +0200
+
+stockanalyses-database (0.1.0~deb9) stretch; urgency=low
+  * add script to create user stock-downloader and stock-importer
+
+  * add import database with a script
+
+  * init
+
+ -- Raphael Lekies <raphael.lekies@stockdashboard.de> Tue, 2 May 2017 18:53:23 +0200

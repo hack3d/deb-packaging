@@ -49,6 +49,7 @@ BASEDIR=$(mktemp -d /tmp/build.XXXXXX)
 R="${BASEDIR}/chroot"
 WRK="${BASEDIR}/debbuild"
 SRC_DIR=/tmp
+PKGNAME=$(basename ${PWD})
 
 # Packages required for bootstrapping
 REQUIRED_PACKAGES="debootstrap debian-archive-keyring qemu-user-static binfmt-support git"
@@ -186,7 +187,7 @@ prepare_build_env "${1}"
 # print architecutre
 chroot_exec dpkg --print-architecture
 
-chroot_exec mkdir -p ${SRC_DIR}/$(basename ${PWD})
+chroot_exec mkdir -p ${SRC_DIR}/${PKGNAME}
 
 while read -r src filename dest taropt || [[ -n "$src" ]]; do
 	if [[ "$src" =~ ^# ]]; then
@@ -223,18 +224,21 @@ while read -r src filename dest taropt || [[ -n "$src" ]]; do
 	else
     		cp -a "$src" "${WRK}/${filename}"
   	fi
-	tar xf "$WRK/${filename}" -C "${R}${SRC_DIR}/$(basename ${PWD})/${dest}" ${TAROPT}
+	tar xf "$WRK/${filename}" -C "${R}${SRC_DIR}/${PKGNAME}/${dest}" ${TAROPT}
     cp "${WRK}/${filename}" "${R}${SRC_DIR}"
 
 done <sources
 
-cp -a "$(pwd)/debian" "${R}${SRC_DIR}/$(basename ${PWD})"
+cp -a "$(pwd)/debian" "${R}${SRC_DIR}/${PKGNAME}"
 
 # create virtual python enviroment
-chroot_exec python3.5 -m venv "${SRC_DIR}/virt-build"
+if [ "${PKGNAME}" == "stockanalyses-downloader" ] ; then
+	chroot_exec python3.5 -m venv "${SRC_DIR}/virt-build"
+fi
 
-# activate virtual environment
-chroot_exec pushd "${SRC_DIR}" && source virt-build/bin/activate
+if [ "${PKGNAME}" == "stockanalyses-importer" ] ; then
+	chroot_exec python3.5 -m venv "${SRC_DIR}/virt-build"
+fi
 
 chroot_exec
 
